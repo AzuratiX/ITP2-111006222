@@ -5,7 +5,7 @@
 #include "./state.hpp"
 #include "../config.hpp"
 
-int pieceval[7] = {0, 1, 6, 7, 8, 20, 100};
+int pieceVal[7] = {0, 1, 6, 7, 8, 20, 100};
 /**
  * @brief evaluate the state
  * 
@@ -25,20 +25,14 @@ int State::evaluate(){
     for(int j = 0; j < BOARD_W; j++){
       int white_piece = white_board[i][j];
       int black_piece = black_board[i][j];
-
-      if(white_piece){
-        wp += pieceval[white_piece];
-      }
-
-      if(black_piece){
-        bp += pieceval[black_piece];
-      }
+      wp += pieceVal[white_piece];
+      bp += pieceVal[black_piece];
     }
   }
-  ret = wp - bp;
+  ret = bp - wp;
   return ret;
-}
 
+}
 
 /**
  * @brief return next state after the move
