@@ -5,7 +5,7 @@
 #include "./state.hpp"
 #include "../config.hpp"
 
-
+int pieceval[7] = {0, 1, 6, 7, 8, 20, 100};
 /**
  * @brief evaluate the state
  * 
@@ -13,7 +13,30 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+
+  auto white_board = this->board.board[this->player];
+  auto black_board = this->board.board[1 - this->player];
+
+  int ret;
+  int bp = 0;
+  int wp = 0;
+
+  for(int i = 0; i < BOARD_H; i++){
+    for(int j = 0; j < BOARD_W; j++){
+      int white_piece = white_board[i][j];
+      int black_piece = black_board[i][j];
+
+      if(white_piece){
+        wp += pieceval[white_piece];
+      }
+
+      if(black_piece){
+        bp += pieceval[black_piece];
+      }
+    }
+  }
+  ret = wp - bp;
+  return ret;
 }
 
 
