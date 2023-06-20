@@ -18,13 +18,13 @@ if(!state->legal_actions.size()){
     int maxVal = -10000000;
     Move flag;
 
-    for(auto i : actions){
-        State* new_state = state->next_state(i);
+    for(auto go : actions){
+        State* new_state = state->next_state(go);
         int check = new_state->evaluate();
 
         if(check > maxVal){
             maxVal = check;
-            flag = i;
+            flag = go;
         }
     }
     return flag;

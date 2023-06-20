@@ -14,8 +14,8 @@ int pieceVal[7] = {0, 1, 6, 7, 8, 20, 100};
 int State::evaluate(){
   // [TODO] design your own evaluation function
 
-  auto white_board = this->board.board[this->player];
-  auto black_board = this->board.board[1 - this->player];
+  auto white_board = this->board.board[0];
+  auto black_board = this->board.board[1];
 
   int ret;
   int bp = 0;
@@ -29,7 +29,7 @@ int State::evaluate(){
       bp += pieceVal[black_piece];
     }
   }
-  ret = bp - wp;
+  ret = wp - bp;
   return ret;
 
 }
